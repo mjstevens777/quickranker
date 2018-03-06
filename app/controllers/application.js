@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
+import { inject } from '@ember/service';
 
 export default Controller.extend({
-  store: Ember.inject.service(),
+  store: inject('store'),
 
   setRoot() {
     this.set(
@@ -152,7 +153,7 @@ export default Controller.extend({
       });
     },
 
-    rerank(entry) {
+    rerank() {
       this._recomputeSegments();
     }
   }
