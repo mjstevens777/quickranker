@@ -1,8 +1,8 @@
 {
-  "name": "ember-quickstart",
+  "name": "quick-ranker",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for ember-quickstart goes here",
+  "description": "Small description for quick-ranker goes here",
   "license": "MIT",
   "author": "",
   "directories": {
@@ -11,7 +11,7 @@
   },
   "repository": "",
   "scripts": {
-    "build": "ember build",
+    "build": "ember build --environment production && rm -rf docs && mv dist docs",
     "lint:js": "eslint ./*.js app config lib server tests",
     "start": "ember serve",
     "test": "ember test"
