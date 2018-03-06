@@ -88,8 +88,10 @@ export default Controller.extend({
       segment.destroyRecord();
     });
     let root = this._generateSegments(this.get('store').peekAll('entry').slice());
-    root.set('root', true);
-    root.save();
+    if (root != null) {
+      root.set('root', true);
+      root.save();
+    }
     this.set('root', root);
     this.setNext();
   },
