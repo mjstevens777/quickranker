@@ -1,0 +1,6 @@
+Hello!
+{{#each model.entries as |entry|}}
+<li>{{entry.name}} <button {{action "deleteEntry" entry}}>delete</button></li>
+{{/each}}
+
+{{input value=newEntryName enter="addEntry"}}
