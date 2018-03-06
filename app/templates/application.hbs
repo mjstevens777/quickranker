@@ -1,36 +1,66 @@
-<h1>Quick Ranker</h1>
-<h3>Add a new item</h3>
+<div class="container">
+  <h1>Quick Ranker</h1>
 
-{{input value=newEntryName enter="addEntry"}}
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Items</h3>
+    </div>
+    <div class="panel-body">
 
-<h3>Your items:</h3>
+      <div class="form-group form-inline">
+        <label>Add a new item</label>
+        {{input class="form-control" value=newEntryName enter="addEntry"}}
+      </div>
+    </div>
 
-{{#each model.entries as |entry|}}
-  <li>
-    {{entry.name}}
-    <button {{action "deleteEntry" entry}}>delete</button>
-  </li>
-{{/each}}
+    <ul class="list-group">
+      {{#each model.entries as |entry|}}
+        <li class="list-group-item">
+          <a {{action "deleteEntry" entry}}>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </a>
+          {{entry.name}}
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 
-<h3>Ranking</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Ranking</h3>
+    </div>
 
-{{#if empty}}
-  Add some items in order to rank them
-{{else}}
-  {{#if completed}}
-    Your order is:
-    {{#each root.sortedEntries as |entry|}}
-    <li>{{entry.name}}</li>
-    {{/each}}
-    <button {{action "rerank"}}>Reset ranking</button>
-  {{else}}
-    Which is better?
-    {{#if flipLeftRight}}
-      <button {{action "right"}}>{{nextChoice.right.top.name}}</button>
-      <button {{action "left"}}>{{nextChoice.left.top.name}}</button>
+    {{#if empty}}
+      <div class="panel-body">
+        Add some items in order to rank them
+      </div>
     {{else}}
-      <button {{action "left"}}>{{nextChoice.left.top.name}}</button>
-      <button {{action "right"}}>{{nextChoice.right.top.name}}</button>
+      {{#if completed}}
+        <ul class="list-group">
+          {{#each root.sortedEntries as |segEntry|}}
+            <li class="list-group-item">
+              <h4>{{segEntry.displayIndex}}. {{segEntry.entry.name}}</h4>
+            </li>
+          {{/each}}
+          <li class="list-group-item">
+            <a {{action "rerank"}}>Reset Ranking</a>
+          </li>
+        </ul>
+      {{else}}
+        <div class="panel-body">
+          <p>Which is better?</p>
+          <div class="btn-group" role="group">
+            {{#if flipLeftRight}}
+              <button class="btn btn-default" {{action "right"}}>{{nextChoice.right.top.name}}</button>
+              <button class="btn btn-default" {{action "left"}}>{{nextChoice.left.top.name}}</button>
+            {{else}}
+              <button class="btn btn-default" {{action "left"}}>{{nextChoice.left.top.name}}</button>
+              <button class="btn btn-default" {{action "right"}}>{{nextChoice.right.top.name}}</button>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
     {{/if}}
-  {{/if}}
-{{/if}}
+  </div>
+</div>
+

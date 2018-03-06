@@ -12,12 +12,11 @@ export default DS.Model.extend({
   sortedEntries: computed('segmentEntries.@each.index', function() {
     let segEntries = this.get('segmentEntries').slice();
     segEntries.sort((a, b) => {a.get('index') - b.get('index')});
-    let entries = segEntries.map((e) => e.get('entry'));
-    return entries;
+    return segEntries;
   }),
 
   top: computed('sortedEntries', 'readHead', function() {
-    return this.get('sortedEntries')[this.get('readHead')];
+    return this.get('sortedEntries')[this.get('readHead')].get('entry');
   }),
 
   writeComplete: computed('segmentEntries.length', 'length',  function() {
