@@ -16,7 +16,7 @@
     <ul class="list-group">
       {{#each model.entries as |entry|}}
         <li class="list-group-item">
-          <a {{action "deleteEntry" entry}}>
+          <a role="button" {{action "deleteEntry" entry}}>
             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
           </a>
           {{entry.name}}
@@ -43,7 +43,7 @@
             </li>
           {{/each}}
           <li class="list-group-item">
-            <a {{action "rerank"}}>Reset Ranking</a>
+            <a role="button" {{action "rerank"}}>Reset Ranking</a>
           </li>
         </ul>
       {{else}}
