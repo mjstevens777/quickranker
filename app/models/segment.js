@@ -11,7 +11,7 @@ export default DS.Model.extend({
 
   sortedEntries: computed('segmentEntries.@each.index', function() {
     let segEntries = this.get('segmentEntries').slice();
-    segEntries.sort((a, b) => {a.get('index') - b.get('index')});
+    segEntries.sort((a, b) => {return a.get('index') - b.get('index')});
     return segEntries;
   }),
 
